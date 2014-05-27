@@ -1,0 +1,101 @@
+<!--
+  Copyright 2013 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000"
+>
+
+    <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+    />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="90dp"
+        android:contentDescription="magic card"/>
+
+    <Button
+        android:id="@+id/random"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Random"
+     />
+
+    <Button
+        android:id="@+id/previous"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/random"
+        android:layout_alignParentBottom = "true"
+        android:layout_toLeftOf="@+id/random"
+        android:text="Prev"
+    />
+
+    <Button
+        android:id="@+id/search"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText1"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignParentRight="true"
+        android:text="Search" />
+
+    <Button
+        android:id="@+id/next"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/random"
+        android:layout_alignBottom="@+id/random"
+        android:layout_toRightOf="@+id/random"
+        android:layout_alignParentBottom = "true"
+        android:text="Next"
+    />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/random"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_toLeftOf="@+id/search"
+        android:ems="10"
+        android:textColor="#FFFFFF" >
+
+        <requestFocus />
+    </EditText>
+
+    <ProgressBar
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/progressBar"
+    android:layout_alignRight="@+id/imageView1"
+    android:layout_below="@+id/search"/>
+</RelativeLayout>
