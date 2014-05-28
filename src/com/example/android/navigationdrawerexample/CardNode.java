@@ -13,21 +13,14 @@ public class CardNode {
     protected CardNode next = null;
     protected CardNode prev = null;
     protected String url = null;
+    protected String name = null;
     protected Bitmap bits = null;
 
-    public CardNode(String url) {
-        this.url = url;
-    }
+
+
 
     public CardNode(Bitmap bits) {
         this.bits = bits;
     }
-
-    public CardNode() {
-        this.next = null;
-        this.prev = null;
-        this.url = null;
-    }
-
 
 }

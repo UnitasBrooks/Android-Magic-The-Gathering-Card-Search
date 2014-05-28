@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] fragments;
+    private SearchFragment search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,10 +115,12 @@ public class MainActivity extends Activity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+        search = new SearchFragment();
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+
     }
 
     @Override
@@ -148,7 +151,7 @@ public class MainActivity extends Activity {
         case R.id.action_websearch:
             // create intent to perform web search for this planet
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
+            intent.putExtra(SearchManager.QUERY, "Joe");
             // catch event that there's no activity to handle intent
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);
@@ -173,7 +176,7 @@ public class MainActivity extends Activity {
         // update the main content by replacing fragments
         Fragment fragment = null;
         switch (position) {
-            case 0:     fragment = new SearchFragment();
+            case 0:     fragment = search;
                         break;
             case 1:     fragment = new DeckFragment();
                         break;

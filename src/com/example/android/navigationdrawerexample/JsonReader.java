@@ -72,4 +72,9 @@ public class JsonReader {
 
         return id;
     }
+
+    public String getName(String url) {
+
+        return null;
+    }
 }

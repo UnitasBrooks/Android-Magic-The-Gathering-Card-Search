@@ -18,6 +18,7 @@ public class LinkedList {
     LinkedList() {
         current = null;
         head = null;
+        tail = null;
         count = 0;
     }
 
@@ -32,8 +33,8 @@ public class LinkedList {
             head = add;
             current = head;
 
-            if(tail.prev == null) {
-                tail.prev = add;
+            if(tail.next == null) {
+                tail.next = add;
             }
         }
 
@@ -41,14 +42,12 @@ public class LinkedList {
             count++;
         } else {
             deleteLast();
-            count--;
         }
     }
 
     private void deleteLast() {
-        CardNode hold = tail.prev.prev;
-        tail = tail.prev;
-        tail.prev = hold;
+        tail = tail.next;
+        tail.prev = null;
     }
 
     public Bitmap getPrevious() {
