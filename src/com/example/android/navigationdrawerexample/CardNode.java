@@ -15,9 +15,18 @@ public class CardNode {
     protected String url = null;
     protected String name = null;
     protected Bitmap bits = null;
+    protected String id = null;
 
 
+    public CardNode(String id, String name, String url) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+    }
 
+    public void setBits(Bitmap bits) {
+        this.bits = bits;
+    }
 
     public CardNode(Bitmap bits) {
         this.bits = bits;

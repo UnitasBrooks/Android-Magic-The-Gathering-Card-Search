@@ -22,12 +22,13 @@ public class LinkedList {
         count = 0;
     }
 
-    public void push(Bitmap bitSave) {
+    public void push(CardNode card) {
         if(head == null) {
-            head = new CardNode(bitSave);
+            head = card;
             tail = head;
+            current = head;
         } else {
-            CardNode add = new CardNode(bitSave);
+            CardNode add = card;
             add.prev = head;
             head.next = add;
             head = add;
@@ -64,5 +65,9 @@ public class LinkedList {
             return current.bits;
         }
         return null;
+    }
+
+    public CardNode getCurrent() {
+        return current;
     }
 }

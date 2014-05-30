@@ -50,18 +50,22 @@ public class JsonReader {
         }
     }
 
-    public String getID(String url) {
+    public CardNode getCard(String url) {
         JSONArray json;
         String id = null;
+        CardNode card = null;
+        String name = null;
         try {
             json = readJsonFromUrl(url);
             id = json.getJSONObject(0).get("id").toString();
+            name = json.getJSONObject(0).get("name").toString();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             try {
                 JSONObject obj = readJsonFromUrlObj(url);
                 id = obj.get("id").toString();
+                name = obj.get("name").toString();
             } catch (IOException e1) {
                 e1.printStackTrace();
             } catch (JSONException e1) {
@@ -69,12 +73,9 @@ public class JsonReader {
             }
             e.printStackTrace();
         }
-
-        return id;
+        card = new CardNode(id,name,url);
+        return card;
     }
 
-    public String getName(String url) {
 
-        return null;
-    }
 }

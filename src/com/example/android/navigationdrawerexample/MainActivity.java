@@ -151,7 +151,7 @@ public class MainActivity extends Activity {
         case R.id.action_websearch:
             // create intent to perform web search for this planet
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, "Joe");
+            intent.putExtra(SearchManager.QUERY, search.getCurrent());
             // catch event that there's no activity to handle intent
             if (intent.resolveActivity(getPackageManager()) != null) {
                 startActivity(intent);

@@ -128,18 +128,19 @@ public  class SearchFragment extends Fragment {
         searchField.setText("");
     }
 
-    private class ConnectToURL extends AsyncTask<String,Void,String> {
+    private class ConnectToURL extends AsyncTask<String,Void,CardNode> {
         @Override
-        protected String doInBackground(String... params) {
+        protected CardNode doInBackground(String... params) {
             String url = params[0];
             JsonReader reader = new JsonReader();
 
-            return  reader.getID(url);
+            return  reader.getCard(url);
         }
 
-        protected void onPostExecute(String id) {
-            String url = ID_SEARCH + id + ".jpg";
-            downloadCardImage(url);
+        protected void onPostExecute(CardNode card) {
+            String url = ID_SEARCH + card.id + ".jpg";
+            card.url = url;
+            downloadCardImage(card);
         }
     }
 
@@ -165,8 +166,8 @@ public  class SearchFragment extends Fragment {
     }
 
 
-    public void downloadCardImage(String url) {
-        new DownloadImage().execute(url);
+    public void downloadCardImage(CardNode card) {
+        new DownloadImage().execute(card);
 
     }
 
@@ -180,33 +181,34 @@ public  class SearchFragment extends Fragment {
         cardImage.setImageBitmap(bits);
     }
 
-    public void setImage(Bitmap bits) {
-        cardImage.setImageBitmap(bits);
-        list.push(bits);
+    public void setImage(CardNode card) {
+        cardImage.setImageBitmap(card.bits);
+        list.push(card);
     }
 
-    public class DownloadImage extends AsyncTask <String,Void,Bitmap> {
+    public class DownloadImage extends AsyncTask <CardNode,Void,CardNode> {
 
         @Override
-        protected Bitmap doInBackground(String... params) {
-            String url = params[0];
+        protected CardNode doInBackground(CardNode... params) {
+            CardNode card = params[0];
             Bitmap bits = null;
             try {
-                InputStream getImage = new java.net.URL(url).openStream();
+                InputStream getImage = new java.net.URL(card.url).openStream();
                 bits = BitmapFactory.decodeStream(getImage);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return bits;
+            card.setBits(bits);
+            return card;
         }
 
-        protected void onPostExecute(Bitmap bits) {
+        protected void onPostExecute(CardNode card) {
             invisibleBar();
             enableButtons();
-            if(bits != null)
-                setImage(bits);
+            if(card.bits != null)
+                setImage(card);
             else
                 noCardFound();
         }
@@ -238,6 +240,10 @@ public  class SearchFragment extends Fragment {
     public void invisibleBar() {
         ProgressBar pb = (ProgressBar) rootView.findViewById(R.id.progressBar);
         pb.setVisibility(View.INVISIBLE);
+    }
+
+    public String getCurrent() {
+        return list.getCurrent().name;
     }
 
 
